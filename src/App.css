@@ -1,3 +1,11 @@
+:root {
+  /* Height */
+  --height-slide: 120px;
+
+  /* Setup */
+  font-size: 62.5%;
+}
+
 .App {
   text-align: center;
 }

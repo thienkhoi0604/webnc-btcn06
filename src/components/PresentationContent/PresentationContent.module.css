@@ -1,0 +1,16 @@
+.container-content-presentation {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: fit-content;
+  margin: 10px 0px 22px 22px;
+}
+
+.container-content-presentation .link-member {
+  text-align: center;
+  font-size: 1.6rem;
+}
+
+.container-content-presentation .heading {
+  font-size: 2.8rem;
+}

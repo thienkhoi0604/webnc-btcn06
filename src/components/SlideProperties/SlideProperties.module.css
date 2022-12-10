@@ -1,0 +1,36 @@
+.type-slide {
+  width: 90%;
+  height: 100%;
+  margin: 20px 20px 0px 20px;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+}
+
+.type-slide::-webkit-scrollbar {
+  display: none;
+}
+
+.heading {
+  margin: 10px 0px;
+  font-size: 1.8rem;
+}
+
+.show-longer-description {
+  display: none;
+}
+
+.longer-description {
+  color: #196cff;
+  margin: 10px;
+}
+
+.longer-description:hover {
+  cursor: pointer;
+  color: #a3bff1;
+}
+
+.text-longer-description {
+  color: #969696;
+  margin-top: 8px;
+  margin-bottom: 6px;
+}

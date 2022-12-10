@@ -1,0 +1,71 @@
+.container-presentation {
+  background-color: white;
+}
+
+.layout-inner {
+  background-color: white;
+}
+
+.left-sider {
+  background-color: white !important;
+}
+
+.left-sider::-webkit-scrollbar {
+  display: none;
+}
+
+.right-sider {
+  background-color: white !important;
+}
+
+.right-sider::-webkit-scrollbar {
+  display: none;
+}
+
+.main-content {
+  background-color: #e7e8eb;
+}
+
+.row-menu-btn {
+  width: 100%;
+  height: auto;
+  padding-left: 20px;
+  padding-top: 20px;
+  background-color: white;
+}
+
+.row-menu-btn .btn-add,
+.row-menu-btn .btn-import {
+  font-size: 1.8rem;
+  line-height: 2rem;
+  margin-left: 10px;
+  padding: 10px 16px;
+  width: auto;
+  height: fit-content;
+}
+
+.row-menu-btn .btn-add:hover {
+  background-color: #1456cc;
+  color: white;
+}
+
+.row-menu-btn .btn-import:hover {
+  color: black;
+  background-color: #b9b9b9;
+  border: 1px solid #e7e8eb;
+}
+
+.btn-add.primary {
+  background-color: #196cff;
+  color: white;
+}
+
+.btn-import.grey {
+  background-color: #dbdce1;
+  color: black;
+  font-weight: 500;
+}
+
+.icon {
+  margin-right: 6px;
+}

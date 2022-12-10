@@ -1,0 +1,15 @@
+.row-option {
+  margin-bottom: 10px;
+}
+
+.btn-add-option {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.btn-add-option-text {
+  font-size: 1.8rem;
+  font-weight: 600;
+}
