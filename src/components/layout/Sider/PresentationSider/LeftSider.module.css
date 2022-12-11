@@ -1,0 +1,7 @@
+.left-sider {
+  background-color: white !important;
+}
+
+.left-sider::-webkit-scrollbar {
+  display: none;
+}

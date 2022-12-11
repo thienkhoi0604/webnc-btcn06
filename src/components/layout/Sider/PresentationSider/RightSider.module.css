@@ -1,0 +1,7 @@
+.right-sider {
+  background-color: white !important;
+}
+
+.right-sider::-webkit-scrollbar {
+  display: none;
+}

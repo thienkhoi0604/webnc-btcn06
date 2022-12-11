@@ -1,12 +1,8 @@
 import "./App.css";
-import Presentation from "./pages/Presentation/Presentation";
+import RootRouter from "./router/router";
 
 function App() {
-  return (
-    <div>
-      <Presentation />
-    </div>
-  );
+  return <RootRouter />;
 }
 
 export default App;

@@ -1,0 +1,13 @@
+.container-sidebar {
+  margin: 0;
+  border-right: 1px solid var(--grey-color);
+  height: 100%;
+  background-color: white !important;
+}
+
+.menu-sidebar {
+  width: 100%;
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin-top: 24px;
+}

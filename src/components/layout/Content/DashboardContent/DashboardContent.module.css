@@ -1,0 +1,76 @@
+.container-content {
+  padding: 40px;
+  width: 100%;
+  background-color: white;
+}
+
+.container-content .title-heading {
+  font-size: 1.8rem;
+  font-weight: 500;
+}
+
+.container-content .title-heading:hover {
+  cursor: default;
+}
+
+.container-control {
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+.container-content .btn-add,
+.container-content .btn-new-folder {
+  font-size: 1.8rem;
+  line-height: 2rem;
+  margin-left: 10px;
+  padding: 10px 20px;
+  width: auto;
+  height: fit-content;
+}
+
+.btn-add.primary {
+  background-color: #196cff;
+  color: white;
+}
+
+.container-content .btn-add:hover {
+  background-color: #1456cc;
+  color: white;
+}
+
+.container-content .btn-new-folder:hover {
+  color: black;
+  background-color: #b9b9b9;
+  border: 1px solid #e7e8eb;
+}
+
+.btn-new-folder.grey {
+  background-color: #dbdce1;
+  color: black;
+  font-weight: 500;
+}
+
+.container-content .group-filter {
+  display: flex;
+}
+
+.container-content .search-box {
+  width: 215px;
+  font-size: 1.8rem;
+  line-height: 2rem;
+}
+
+.field-name .icon-play {
+  font-size: 2.4rem;
+  margin-right: 6px;
+}
+
+.field-name .name-slide {
+  font-size: 1.6rem;
+}
+
+.field-name .description {
+  font-size: 1.2rem;
+  color: #b9b9b9;
+  margin-right: 6px;
+}

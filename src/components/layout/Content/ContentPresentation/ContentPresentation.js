@@ -1,9 +1,9 @@
-import classes from "./PresentationContent.module.css";
+import classes from "./ContentPresentation.module.css";
 import { BarChart, Bar, ResponsiveContainer, LabelList, XAxis } from "recharts";
 import { Space, Row } from "antd";
-import { chartData } from "../../mock/chart";
+import { chartData } from "../../../../mock/chart";
 
-const PresentationContent = () => {
+const ContentPresentation = () => {
   return (
     <Space
       direction="vertical"
@@ -32,4 +32,4 @@ const PresentationContent = () => {
   );
 };
 
-export default PresentationContent;
+export default ContentPresentation;

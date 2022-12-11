@@ -6,22 +6,6 @@
   background-color: white;
 }
 
-.left-sider {
-  background-color: white !important;
-}
-
-.left-sider::-webkit-scrollbar {
-  display: none;
-}
-
-.right-sider {
-  background-color: white !important;
-}
-
-.right-sider::-webkit-scrollbar {
-  display: none;
-}
-
 .main-content {
   background-color: #e7e8eb;
 }

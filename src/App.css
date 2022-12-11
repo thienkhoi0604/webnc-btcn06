@@ -2,6 +2,9 @@
   /* Height */
   --height-slide: 120px;
 
+  /* Colors */
+  --grey-color: #b9b9b9;
+
   /* Setup */
   font-size: 62.5%;
 }

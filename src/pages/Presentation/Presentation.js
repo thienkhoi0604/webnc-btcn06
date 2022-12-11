@@ -1,18 +1,18 @@
 import classes from "./Presentation.module.css";
-import { Layout, Col, Row, Space, Button } from "antd";
-import Slide from "../../components/Slide/Slide";
-import SlideProperties from "../../components/SlideProperties/SlideProperties";
-import PresentationContent from "../../components/PresentationContent/PresentationContent";
+import { Layout, Col, Row, Button } from "antd";
 import { RiUpload2Line } from "react-icons/ri";
 import PresentationHeader from "../../components/layout/Header/PresentationHeader/PresentationHeader";
+import LeftSider from "../../components/layout/Sider/PresentationSider/LeftSider";
+import RightSider from "../../components/layout/Sider/PresentationSider/RightSider";
+import ContentPresentation from "../../components/layout/Content/ContentPresentation/ContentPresentation";
 
-const { Content, Sider } = Layout;
+const { Content } = Layout;
+
 const Presentation = () => {
   return (
     <>
       <Layout className={classes["container-presentation"]}>
         <PresentationHeader />
-
         <Row className={classes["row-menu-btn"]}>
           <Button className={`${classes["btn-add"]} ${classes["primary"]}`}>
             + New Slide
@@ -25,47 +25,17 @@ const Presentation = () => {
 
         <Layout className={classes["layout-inner"]}>
           <Col span={4}>
-            <Sider
-              width="100%"
-              className={classes["left-sider"]}
-              style={{
-                overflowY: "scroll",
-                height: "100vh",
-              }}
-            >
-              <Slide current="current-slide" />
-              <Slide />
-              <Slide />
-              <Slide />
-              <Slide />
-              <Slide />
-            </Sider>
+            <LeftSider />
           </Col>
 
           <Col span={12}>
             <Content className={classes["main-content"]}>
-              <PresentationContent />
+              <ContentPresentation />
             </Content>
           </Col>
 
           <Col span={8}>
-            <Sider
-              width="100%"
-              className={classes["right-sider"]}
-              style={{
-                overflowY: "auto",
-                height: "100vh",
-              }}
-            >
-              <Space
-                direction="vertical"
-                align="center"
-                style={{ width: "100%" }}
-                wrap
-              >
-                <SlideProperties />
-              </Space>
-            </Sider>
+            <RightSider />
           </Col>
         </Layout>
       </Layout>
