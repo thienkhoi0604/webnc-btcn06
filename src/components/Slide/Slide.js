@@ -1,49 +1,26 @@
 import classes from "./Slide.module.css";
-import { Col, Row, Card, Space, Button, Dropdown } from "antd";
+import { Col, Row, Card, Space, Dropdown } from "antd";
 import { RxDragHandleDots2 } from "react-icons/rx";
 import { SiSimpleanalytics } from "react-icons/si";
+import axios from "axios";
+import { URL_SERVER } from "../../constants";
 
 const items = [
   {
     key: "1",
-    label: (
-      <a
-        target="_blank"
-        rel="noopener noreferrer"
-        href="https://www.antgroup.com"
-      >
-        1st menu item
-      </a>
-    ),
-  },
-  {
-    key: "2",
-    label: (
-      <a
-        target="_blank"
-        rel="noopener noreferrer"
-        href="https://www.aliyun.com"
-      >
-        2nd menu item
-      </a>
-    ),
-  },
-  {
-    key: "3",
-    label: (
-      <a
-        target="_blank"
-        rel="noopener noreferrer"
-        href="https://www.luohanacademy.com"
-      >
-        3rd menu item
-      </a>
-    ),
+    label: <div>Delete</div>,
   },
 ];
 
 const Slide = (props) => {
-  const { current } = props;
+  const { slide, current, onClick } = props;
+
+  const onClickHandler = async (value) => {
+    const result = await axios.delete(`${URL_SERVER}/slide/${value.id}`);
+
+    console.log("result delete", result);
+  };
+
   return (
     <div className={classes["container-slide"]}>
       <Card
@@ -53,10 +30,11 @@ const Slide = (props) => {
       >
         <Row>
           <Col span={3} className={classes["option-control-slide"]}>
-            <div>1</div>
+            <div>{slide.id}</div>
             <Dropdown
               menu={{
                 items,
+                onClick: (e) => onClickHandler(slide),
               }}
               trigger={["click"]}
               placement="bottomLeft"
@@ -72,6 +50,7 @@ const Slide = (props) => {
             <Dropdown
               menu={{
                 items,
+                onClick: (e) => onClickHandler(slide),
               }}
               trigger={["contextMenu"]}
               placement="bottomLeft"
@@ -83,10 +62,11 @@ const Slide = (props) => {
                 type="inner"
                 className={classes["type-content-slide"]}
                 bodyStyle={{ padding: "0px" }}
+                onClick={onClick}
               >
                 <Space direction="vertical" align="center">
                   <SiSimpleanalytics />
-                  Inner Card content
+                  {slide.question}
                 </Space>
               </Card>
             </Dropdown>

@@ -3,18 +3,29 @@ import { Header } from "antd/es/layout/layout";
 import { Input, Space } from "antd";
 import { RxArrowLeft } from "react-icons/rx";
 import { Button } from "antd/es/radio";
+import { memo } from "react";
+import { useNavigate } from "react-router-dom";
 
-const PresentationHeader = () => {
+const PresentationHeader = (props) => {
+  const { presentation } = props;
+
+  const navaigate = useNavigate();
+
   return (
     <Header className={classes["header-presentation"]}>
       <Space direction="horizontal">
-        <RxArrowLeft className={classes["icon-left-arrow"]} />
+        <RxArrowLeft
+          className={classes["icon-left-arrow"]}
+          onClick={() => navaigate("/dashboard")}
+        />
         <div className={classes["name-presentation"]}>
           <Input
-            value="My First Presentation"
+            value={presentation.name_pre}
             className={classes["header-presentation-input"]}
           />
-          <span className={classes["created-by"]}>Created by tester</span>
+          <span className={classes["created-by"]}>
+            Created by {presentation.owner_pre}
+          </span>
         </div>
       </Space>
       <span className={classes["btn-group"]}>
@@ -25,4 +36,4 @@ const PresentationHeader = () => {
   );
 };
 
-export default PresentationHeader;
+export default memo(PresentationHeader);

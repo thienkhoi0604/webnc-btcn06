@@ -2,7 +2,9 @@ import classes from "./Options.module.css";
 import { Row, Input, Button } from "antd";
 import OptionInput from "../../UI/Input/OptionInput/OptionInput";
 
-const Options = () => {
+const Options = (props) => {
+  const { options } = props;
+
   const onChange = (e) => {
     console.log("Change:", e.target.value);
   };
@@ -10,15 +12,13 @@ const Options = () => {
     <>
       <h4>Options</h4>
       <Input.Group>
-        <Row className={classes["row-option"]}>
-          <OptionInput onChange={onChange} />
-        </Row>
-        <Row className={classes["row-option"]}>
-          <OptionInput onChange={onChange} />
-        </Row>
-        <Row className={classes["row-option"]}>
-          <OptionInput onChange={onChange} />
-        </Row>
+        {options.map((item, index) => {
+          return (
+            <Row key={index} className={classes["row-option"]}>
+              <OptionInput value={item.value_option} onChange={onChange} />
+            </Row>
+          );
+        })}
       </Input.Group>
       <Row className={classes["btn-add-option"]}>
         <Button

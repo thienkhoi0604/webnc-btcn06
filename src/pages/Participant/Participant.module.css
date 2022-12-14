@@ -1,0 +1,70 @@
+.container {
+  display: flex;
+  background-color: white;
+  width: 50%;
+  margin: auto;
+}
+
+.container .logo-name {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 3.6rem;
+}
+
+.container .img {
+  display: block;
+  width: 70%;
+  margin: auto;
+}
+
+.container .presentation-name {
+  width: 100%;
+  font-size: 2.8rem;
+  font-weight: 500;
+  margin-top: 10px;
+  margin-bottom: 0;
+  opacity: 0.8;
+}
+
+.container .description {
+  height: fit-content;
+  line-height: normal;
+  color: black;
+  opacity: 0.7;
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.container .radio-group {
+  width: 100%;
+}
+
+.container .radio-selection {
+  width: 100%;
+  padding: 16px;
+  margin: 10px 0;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+
+.container .radio-selection * {
+  font-size: 2.2rem !important;
+}
+
+.container .btn-submit {
+  width: 100%;
+  height: fit-content;
+  color: white;
+  font-size: 2rem;
+  font-weight: 600;
+  padding: 12px 0;
+  background-color: var(--primary-color);
+}
+
+.check {
+  background-color: transparent;
+}
+.check:hover {
+  width: 100%;
+}

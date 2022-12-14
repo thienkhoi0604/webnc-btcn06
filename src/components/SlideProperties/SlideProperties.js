@@ -1,27 +1,29 @@
 import classes from "./SlideProperties.module.css";
 import { typeSlideData } from "../../mock/type-slide";
-import AsyncSelect from "react-select/async";
+import Select from "react-select";
 import { Divider, Input } from "antd";
 import ResultLayout from "./ResultLayout/ResultLayout";
 import Options from "./Options/Options";
-import { useEffect } from "react";
-
-const filterTypeSlides = (inputValue) => {
-  return typeSlideData.filter((i) =>
-    i.label.toLowerCase().includes(inputValue.toLowerCase())
-  );
-};
-
-const promiseTypeSlides = (inputValue) =>
-  new Promise((resolve) => {
-    setTimeout(() => {
-      resolve(filterTypeSlides(inputValue));
-    }, 1000);
-  });
+import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
+import { URL_SERVER } from "../../constants";
 
 const { TextArea } = Input;
 
-const SlideProperties = () => {
+const SlideProperties = (props) => {
+  const [options, setOptions] = useState(null);
+  const { slide } = props;
+
+  const { isLoading, error } = useQuery({
+    queryKey: [`repoOptions${slide.id}`],
+    queryFn: async () => {
+      const { data } = await axios.get(`${URL_SERVER}/option/${slide.id}`);
+      setOptions(data);
+      return data;
+    },
+  });
+
   useEffect(() => {
     const show = document.getElementById("longer-description");
     const addLongerDes = document.getElementById("add-longer-description");
@@ -31,26 +33,35 @@ const SlideProperties = () => {
       addLongerDes.style.display = "none";
     };
 
-    addLongerDes.addEventListener("click", showLongerDescription);
+    if (show && addLongerDes) {
+      addLongerDes.addEventListener("click", showLongerDescription);
+    }
 
     return () => {
-      show.style.display = "none";
-      addLongerDes.style.display = "block";
-      addLongerDes.removeEventListener("click", showLongerDescription);
+      if (show && addLongerDes) {
+        show.style.display = "none";
+        addLongerDes.style.display = "block";
+        addLongerDes.removeEventListener("click", showLongerDescription);
+      }
     };
   }, []);
 
   const onChange = (e) => {
     console.log("Change:", e.target.value);
   };
+
+  if (isLoading) return "Loading...";
+
+  if (error) return "An error has occurred: " + error.message;
+
   return (
     <div className={classes["type-slide"]}>
       <h4 className={classes["heading"]}>Slide type</h4>
-      <AsyncSelect
-        cacheOptions
+      <Select
         options={typeSlideData}
         defaultOptions={typeSlideData}
-        loadOptions={promiseTypeSlides}
+        defaultValue={typeSlideData[0]}
+        placeholder=""
         styles={{
           control: (baseStyles) => ({
             ...baseStyles,
@@ -60,11 +71,12 @@ const SlideProperties = () => {
         }}
       />
       <Divider />
-      <h4 className={classes["heading"]}>Your Question</h4>
+      <h4 className={classes["heading"]}>Your question</h4>
       <Input
         showCount
         maxLength={150}
         onChange={onChange}
+        value={slide && slide.question}
         style={{
           height: "40px",
         }}
@@ -87,6 +99,7 @@ const SlideProperties = () => {
           showCount
           maxLength={250}
           placeholder="Your description"
+          value={slide && slide.question}
           style={{
             height: 85,
             resize: "none",
@@ -94,7 +107,7 @@ const SlideProperties = () => {
           onChange={onChange}
         />
       </span>
-      <Options />
+      {options && <Options options={options} />}
       <ResultLayout />
     </div>
   );

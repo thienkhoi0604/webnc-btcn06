@@ -4,7 +4,9 @@ import Slide from "../../../Slide/Slide";
 
 const { Sider } = Layout;
 
-const LeftSider = () => {
+const LeftSider = (props) => {
+  const { slides, onSelect } = props;
+
   return (
     <Sider
       width="100%"
@@ -14,12 +16,12 @@ const LeftSider = () => {
         height: "100vh",
       }}
     >
-      <Slide current="current-slide" />
-      <Slide />
-      <Slide />
-      <Slide />
-      <Slide />
-      <Slide />
+      {slides &&
+        slides.map((item) => {
+          return (
+            <Slide key={item.id} slide={item} onClick={() => onSelect(item)} />
+          );
+        })}
     </Sider>
   );
 };
