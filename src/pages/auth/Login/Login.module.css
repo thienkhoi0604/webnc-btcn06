@@ -1,0 +1,172 @@
+::-webkit-input-placeholder {
+  color: #565f79;
+  padding-left: 6px;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:focus {
+  transition: background-color 600000s 0s, color 600000s 0s;
+}
+
+.input-element {
+  display: block;
+  margin: 20px auto;
+  background: #262e49;
+  border: 0;
+  border-radius: 5px;
+  padding: 14px 10px;
+  width: 320px;
+  outline: none;
+  color: var(--text-color);
+  -webkit-transition: all 0.2s ease-out;
+  -moz-transition: all 0.2s ease-out;
+  -ms-transition: all 0.2s ease-out;
+  -o-transition: all 0.2s ease-out;
+  transition: all 0.2s ease-out;
+}
+
+.btn {
+  border: 0;
+  background: var(--primary-color);
+  color: #dfdeee;
+  border-radius: 100px;
+  width: 200px;
+  height: 50px;
+  font-size: 16px;
+  text-align: center;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background: #5d33e6;
+}
+
+.btn.btn-form {
+  position: absolute;
+  margin-top: 36px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.form-login {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.form-container {
+  position: absolute;
+  margin: 0;
+  top: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  background-color: rgb(33, 41, 66);
+  border-radius: 9px;
+  width: 400px;
+  height: 550px;
+  box-shadow: 1px 1px 100px 18px rgb(25, 31, 53);
+}
+
+.form-container h3 {
+  font-family: "Source Sans Pro", sans-serif;
+  color: #5c6bc0;
+  font-size: 18px;
+  margin-top: 60px;
+  cursor: default;
+}
+
+.form-container h5 {
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 13px;
+  color: #a1a4ad;
+  letter-spacing: 1.5px;
+  margin-bottom: 80px;
+  cursor: default;
+}
+
+.form-container .error {
+  text-align: center;
+  height: 20px;
+  padding: 2px;
+  margin: 10px auto;
+  position: absolute;
+  top: 28%;
+  left: 8%;
+  color: red;
+}
+
+.form-container .savepass .remember {
+  position: relative;
+  color: var(--color-text);
+  font-size: 13px;
+  top: -2px;
+  left: 6px;
+}
+
+.form-container .forgetpass {
+  font-size: 1.6rem;
+  position: absolute;
+  float: right;
+  right: 30px;
+  color: var(--primary-color);
+}
+
+.form-container .forgetpass:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.form-container .create {
+  font-size: 1.6rem;
+  position: absolute;
+  margin-top: 88px;
+  left: 22%;
+  color: var(--primary-color);
+}
+
+.form-container .create:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.form-container .visibility-password {
+  position: absolute;
+  left: 338px;
+  top: 272px;
+  color: var(--icon-color);
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.form-container .visibility-password.active {
+  color: var(--primary-color);
+}
+
+.social-media {
+  position: absolute;
+  margin-top: 130px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+}
+
+.social-media-title {
+  font-size: 1.6rem;
+  display: inline;
+  color: var(--text-color);
+}
+
+.social-btn {
+  width: 60px;
+  height: 60px;
+  background-color: #4285f4;
+  border: none;
+  border-radius: 20px;
+  margin: 10px;
+}
+
+.social-btn:hover {
+  cursor: pointer;
+}

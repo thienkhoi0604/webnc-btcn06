@@ -4,7 +4,7 @@ import { Layout, Space, Image, Radio, Button } from "antd";
 import { Content } from "antd/es/layout/layout";
 
 const Participant = (props) => {
-  const { slide } = props;
+  //const { slide } = props;
   const [value, setValue] = useState(1);
   const onChange = (e) => {
     console.log("radio checked", e.target.value);

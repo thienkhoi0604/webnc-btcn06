@@ -4,14 +4,28 @@ import ErrorPage from "../pages/Error/ErrorPage";
 import Participant from "../pages/Participant/Participant";
 import Presentation from "../pages/Presentation/Presentation";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import Temp from "../pages/Temp";
+import Login from "../pages/auth/Login/Login";
+import Register from "../pages/auth/Signup/Register";
+import ActivationEmail from "../pages/auth/ActivationEmail/ActivationEmail";
 
 const queryClient = new QueryClient();
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Temp />,
+    element: <Dashboard />,
+  },
+  {
+    path: "/login",
+    element: <Login />,
+  },
+  {
+    path: "/register",
+    element: <Register />,
+  },
+  {
+    path: "/user/activate/:activation_token",
+    element: <ActivationEmail />,
   },
   {
     path: "/dashboard",

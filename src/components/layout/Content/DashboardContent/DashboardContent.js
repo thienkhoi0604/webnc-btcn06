@@ -5,8 +5,8 @@ import Select from "react-select";
 import { RiPlayCircleLine } from "react-icons/ri";
 import { RxDotsHorizontal } from "react-icons/rx";
 import { Link } from "react-router-dom";
-import axios from "axios";
-import { URL_SERVER } from "../../../../constants";
+// import axios from "axios";
+// import { URL_SERVER } from "../../../../constants";
 
 const { Content } = Layout;
 const { Search } = Input;

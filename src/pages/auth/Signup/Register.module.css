@@ -1,0 +1,134 @@
+input:-webkit-autofill,
+input:-webkit-autofill:focus {
+  transition: background-color 600000s 0s, color 600000s 0s;
+}
+
+::-webkit-input-placeholder {
+  color: #565f79;
+  padding-left: 6px;
+}
+
+.input-element {
+  display: block;
+  margin: 20px auto;
+  background: #262e49;
+  border: 0;
+  border-radius: 5px;
+  padding: 14px 10px;
+  width: 320px;
+  outline: none;
+  color: var(--text-color);
+  -webkit-transition: all 0.2s ease-out;
+  -moz-transition: all 0.2s ease-out;
+  -ms-transition: all 0.2s ease-out;
+  -o-transition: all 0.2s ease-out;
+  transition: all 0.2s ease-out;
+}
+
+.btn {
+  border: 0;
+  background: var(--primary-color);
+  color: #dfdeee;
+  border-radius: 100px;
+  width: 200px;
+  height: 50px;
+  font-size: 16px;
+  text-align: center;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background: #5d33e6;
+}
+
+.btn.btn-form {
+  position: absolute;
+  margin-top: 36px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.btn.btn-signup {
+  position: absolute;
+  left: 50%;
+  bottom: 10%;
+  transform: translateX(-50%);
+}
+
+.form-signup {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.form-container {
+  /* composes: form-container from "../Login/Login.module.css"; */
+  position: absolute;
+  margin: 0;
+  top: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  background-color: rgb(33, 41, 66);
+  border-radius: 9px;
+  width: 800px;
+  height: 580px;
+  box-shadow: 1px 1px 100px 18px rgb(25, 31, 53);
+}
+
+.form-container img {
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  left: 0;
+  border-radius: 9px 0px 0px 9px;
+}
+
+.form-input-signup {
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  right: 0;
+}
+
+.form-input-signup h3 {
+  font-family: "Source Sans Pro", sans-serif;
+  color: #5c6bc0;
+  font-size: 18px;
+  margin-top: 30px;
+  cursor: default;
+}
+
+.form-input-signup h5 {
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 13px;
+  color: #a1a4ad;
+  letter-spacing: 1.5px;
+  margin-bottom: 60px;
+  cursor: default;
+}
+
+.form-input-signup .error {
+  text-align: center;
+  height: 20px;
+  padding: 2px;
+  margin: 10px auto;
+  position: absolute;
+  top: 18%;
+  left: 8%;
+  color: red;
+  display: none;
+}
+
+.invalid-repeat {
+  border: 1px solid red;
+}
+
+.form-input-signup .back-login {
+  font-size: 1.6rem;
+  position: absolute;
+  left: 26%;
+  bottom: 6%;
+  color: var(--primary-color);
+}
