@@ -5,7 +5,7 @@ import SlideProperties from "../../../SlideProperties/SlideProperties";
 const { Sider } = Layout;
 
 const RightSider = (props) => {
-  const { slide } = props;
+  const { slide, onChange } = props;
   return (
     <Sider
       width="100%"
@@ -16,7 +16,7 @@ const RightSider = (props) => {
       }}
     >
       <Space direction="vertical" align="center" style={{ width: "100%" }} wrap>
-        <SlideProperties slide={slide} />
+        <SlideProperties slide={slide} onChange={onChange} />
       </Space>
     </Sider>
   );

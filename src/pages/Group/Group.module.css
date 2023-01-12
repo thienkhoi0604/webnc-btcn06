@@ -1,0 +1,4 @@
+.container {
+  background-color: white !important;
+  border-top: 1px solid var(--grey-color);
+}

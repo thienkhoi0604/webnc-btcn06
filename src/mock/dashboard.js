@@ -5,13 +5,8 @@ export const siderDashboardData = [
     icon: "",
   },
   {
-    label: "Templates",
-    key: "templates",
-    icon: "",
-  },
-  {
-    label: "Tutorials",
-    key: "tutorials",
+    label: "Groups",
+    key: "groups",
     icon: "",
   },
 ];

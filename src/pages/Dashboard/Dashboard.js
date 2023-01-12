@@ -6,19 +6,43 @@ import DashboardHeader from "../../components/layout/Header/DashboardHeader/Dash
 import { useQuery } from "@tanstack/react-query";
 import { URL_SERVER } from "../../constants/";
 import axios from "axios";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
+import { message } from "antd";
+// import Header from "../../components/layout/Header/Header/Header";
 
 const Dashboard = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [newPresentation, setNewPresentation] = useState("");
+  const auth = useSelector((state) => state.auth);
+  const [messageApi, contextHolder] = message.useMessage();
+  const [noti, setNoti] = useState({ err: "", success: "" });
 
   const { isLoading, error, data } = useQuery({
     queryKey: ["repoPresentation"],
     queryFn: async () => {
-      const { data } = await axios.get(`${URL_SERVER}/presentation`);
+      const { data } = await axios.get(`${URL_SERVER}/presentation`, {
+        params: { email: auth.userLogin.email },
+      });
       return data;
     },
   });
+
+  useEffect(() => {
+    const notification = (type, value) => {
+      messageApi.open({
+        type: type,
+        content: value,
+      });
+    };
+
+    if (noti.err !== "") {
+      notification("error", noti.err);
+    }
+    if (noti.success !== "") {
+      notification("success", noti.success);
+    }
+  }, [noti.err, noti.success, messageApi]);
 
   const showModal = () => {
     setIsModalOpen(true);
@@ -27,11 +51,15 @@ const Dashboard = () => {
   const handleOk = async () => {
     setIsModalOpen(false);
 
-    const result = await axios.post(`${URL_SERVER}/presentation`, {
+    const result = await axios.post(`${URL_SERVER}/presentation/`, {
       name_pre: newPresentation,
-      owner: "Hoang Khoi",
+      email: auth.userLogin.email,
     });
-    console.log("result create", result);
+    if (result.status >= 200 && result.status < 300) {
+      setNoti({ ...noti, success: result.data.msg });
+    } else {
+      setNoti({ ...noti, err: result.data.msg });
+    }
   };
 
   const handleCancel = () => {
@@ -44,6 +72,8 @@ const Dashboard = () => {
 
   return (
     <Layout>
+      {/* <Header /> */}
+      {contextHolder}
       <DashboardHeader />
       <Layout className={classes["container"]}>
         <Col span={4}>

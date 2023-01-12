@@ -4,22 +4,26 @@ import Select from "react-select";
 import { Divider, Input } from "antd";
 import ResultLayout from "./ResultLayout/ResultLayout";
 import Options from "./Options/Options";
-import { useEffect, useState } from "react";
-import { useQuery } from "@tanstack/react-query";
+import { useEffect } from "react";
+import { useState } from "react";
 import axios from "axios";
 import { URL_SERVER } from "../../constants";
+import { useQuery } from "@tanstack/react-query";
+import { useOptionsState } from "../../context/option";
 
 const { TextArea } = Input;
 
 const SlideProperties = (props) => {
+  const { slide, onChange } = props;
   const [options, setOptions] = useState(null);
-  const { slide } = props;
+  const optionsState = useOptionsState();
 
   const { isLoading, error } = useQuery({
     queryKey: [`repoOptions${slide.id}`],
     queryFn: async () => {
       const { data } = await axios.get(`${URL_SERVER}/option/${slide.id}`);
       setOptions(data);
+      optionsState.setInitialValues(data);
       return data;
     },
   });
@@ -46,10 +50,6 @@ const SlideProperties = (props) => {
     };
   }, []);
 
-  const onChange = (e) => {
-    console.log("Change:", e.target.value);
-  };
-
   if (isLoading) return "Loading...";
 
   if (error) return "An error has occurred: " + error.message;
@@ -75,7 +75,7 @@ const SlideProperties = (props) => {
       <Input
         showCount
         maxLength={150}
-        onChange={onChange}
+        onChange={(e) => onChange.question(e.target.value)}
         value={slide && slide.question}
         style={{
           height: "40px",
@@ -107,7 +107,7 @@ const SlideProperties = (props) => {
           onChange={onChange}
         />
       </span>
-      {options && <Options options={options} />}
+      <Options options={options} slide={slide} />
       <ResultLayout />
     </div>
   );

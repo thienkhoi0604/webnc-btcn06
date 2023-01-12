@@ -30,6 +30,12 @@ const Presentation = (props) => {
     },
   });
 
+  const onChange = {
+    question: (value) => {
+      setSelected({ ...selected, question: value });
+    },
+  };
+
   useQuery({
     queryKey: [`repoSlide${params.idPresentation}`],
     queryFn: async () => {
@@ -83,7 +89,9 @@ const Presentation = (props) => {
           </Content>
         </Col>
 
-        <Col span={8}>{selected && <RightSider slide={selected} />}</Col>
+        <Col span={8}>
+          {selected && <RightSider slide={selected} onChange={onChange} />}
+        </Col>
       </Layout>
     </Layout>
   );

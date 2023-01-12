@@ -1,26 +1,11 @@
 import classes from "./ContentPresentation.module.css";
 import { BarChart, Bar, ResponsiveContainer, LabelList, XAxis } from "recharts";
 import { Space, Row } from "antd";
-import { useQuery } from "@tanstack/react-query";
-import { useState } from "react";
-import axios from "axios";
-import { URL_SERVER } from "../../../../constants";
+import { useOptionsState } from "../../../../context/option";
 
 const ContentPresentation = (props) => {
   const { slide } = props;
-  const [chart, setChart] = useState(null);
-  const { isLoading, error } = useQuery({
-    queryKey: [`repoOptionsVote${slide.id}`],
-    queryFn: async () => {
-      const { data } = await axios.get(`${URL_SERVER}/option/${slide.id}`);
-      setChart(data);
-      return data;
-    },
-  });
-
-  if (isLoading) return "Loading...";
-
-  if (error) return "An error has occurred: " + error.message;
+  const optionsState = useOptionsState();
 
   return (
     <Space
@@ -36,7 +21,7 @@ const ContentPresentation = (props) => {
           <BarChart
             width={150}
             height={40}
-            data={chart}
+            data={optionsState.dataOptions}
             margin={{ top: 30, right: 60, left: 30, bottom: 10 }}
           >
             <XAxis dataKey="value_option" />

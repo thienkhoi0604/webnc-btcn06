@@ -5,8 +5,11 @@ import Select from "react-select";
 import { RiPlayCircleLine } from "react-icons/ri";
 import { RxDotsHorizontal } from "react-icons/rx";
 import { Link } from "react-router-dom";
-// import axios from "axios";
-// import { URL_SERVER } from "../../../../constants";
+import axios from "axios";
+import { useQuery } from "@tanstack/react-query";
+import { URL_SERVER } from "../../../../constants";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 
 const { Content } = Layout;
 const { Search } = Input;
@@ -18,7 +21,7 @@ const items = [
   },
   {
     key: "2",
-    label: <div>Delete</div>,
+    label: <div onClick={(e) => console.log("eeee")}>Delete</div>,
   },
 ];
 
@@ -52,8 +55,8 @@ const columns = [
   },
   {
     title: "Owner",
-    dataIndex: "owner_pre",
-    key: "owner_pre",
+    dataIndex: "fullname",
+    key: "fullname",
     sorter: (a, b) => a.owner - b.owner,
   },
   {
@@ -96,7 +99,29 @@ const columns = [
 
 const DashboardContent = (props) => {
   const { presentationsData, onShowModal } = props;
+  const [presentations, setPresentations] = useState(presentationsData);
   const onSearch = (value) => console.log(value);
+  const auth = useSelector((state) => state.auth);
+
+  const { data } = useQuery({
+    queryKey: ["getUserInfor"],
+    queryFn: async () => {
+      const { data } = await axios.get(`${URL_SERVER}/user/infor`, {
+        params: { email: auth.userLogin.email },
+      });
+      return data;
+    },
+  });
+
+  useEffect(() => {
+    if (data && presentationsData) {
+      const arr = presentationsData.map((item) => {
+        item.fullname = data.fullname;
+        return item;
+      });
+      setPresentations(arr);
+    }
+  }, [presentationsData, data]);
 
   return (
     <Content className={classes["container-content"]}>
@@ -160,7 +185,7 @@ const DashboardContent = (props) => {
               type: "checkbox",
             }}
             columns={columns}
-            dataSource={presentationsData}
+            dataSource={presentations}
             style={{ width: "100%" }}
           />
         </Row>

@@ -11,7 +11,10 @@ import { gapi } from "gapi-script";
 import FacebookLogin from "react-facebook-login/dist/facebook-login-render-props";
 import { message } from "antd";
 import { URL_SERVER } from "../../../constants";
-import { dispatchLogin } from "../../../redux/actions/authAction";
+import {
+  dispatchUserLogin,
+  dispatchLogin,
+} from "../../../redux/actions/authAction";
 import { useDispatch } from "react-redux";
 
 const Input = ({ ...rest }) => {
@@ -75,7 +78,7 @@ const Login = ({ className }) => {
     const initClient = () => {
       gapi.client.init({
         clientId:
-          "1059448371288-vol44jdsvkfc0d1b96puhukpd35fv0c3.apps.googleusercontent.com",
+          "985453790796-3blkrf1glddf1gudrbg8cog8earsegn8.apps.googleusercontent.com",
         scope: "profile",
       });
     };
@@ -111,6 +114,9 @@ const Login = ({ className }) => {
       localStorage.setItem("firstLogin", true);
 
       dispatch(dispatchLogin());
+      dispatch(
+        dispatchUserLogin({ email: user.email, password: user.password })
+      );
       navigate("/");
     } catch (err) {
       if (err.response.data.msg) {
@@ -121,38 +127,38 @@ const Login = ({ className }) => {
     }
   };
 
-  // const responseGoogle = async (response) => {
-  //   console.log("responseGoogle");
-  //   try {
-  //     const res = await axios.post("http://localhost:5000/googlelogin", {
-  //       tokenId: response.tokenId,
-  //     });
+  const responseGoogle = async (response) => {
+    console.log("responseGoogle", response);
+    try {
+      const res = await axios.post(`${URL_SERVER}/user/googlelogin`, {
+        tokenId: response.tokenId,
+      });
+      setUser({ ...user, error: "", success: res.data.msg });
+      localStorage.setItem("firstLogin", true);
 
-  //     getUser(res.data.user);
-  //     localStorage.clear();
-  //     localStorage.setItem("user", res.data.user);
-  //     onLogin(true);
-  //   } catch (err) {
-  //     console.log("connect google fail: ", err);
-  //   }
-  // };
+      dispatch(dispatchLogin());
+      dispatch(dispatchUserLogin({ email: res.data.user, password: "" }));
+      navigate("/");
+    } catch (err) {
+      console.log("connect google fail: ", err);
+    }
+  };
 
-  // const responseFacebook = async (response) => {
-  //   try {
-  //     const { accessToken, userID } = response;
-  //     const res = await axios.post("http://localhost:5000/facebooklogin", {
-  //       accessToken,
-  //       userID,
-  //     });
-  //     getUser(res.data.user);
+  const responseFacebook = async (response) => {
+    try {
+      const { accessToken, userID } = response;
+      console.log(response);
+      const res = await axios.post(`${URL_SERVER}/user/facebooklogin`, {
+        accessToken,
+        userID,
+      });
 
-  //     localStorage.clear();
-  //     localStorage.setItem("user", res.data.user);
-  //     onLogin(true);
-  //   } catch (err) {
-  //     err.response.data.msg && console.log("connect facebook fail: ", err);
-  //   }
-  // };
+      localStorage.clear();
+      localStorage.setItem("user", res.data.user);
+    } catch (err) {
+      err.response.data.msg && console.log("connect facebook fail: ", err);
+    }
+  };
 
   return (
     <div className={`${classes["form-login"]} ${className}`}>
@@ -199,7 +205,7 @@ const Login = ({ className }) => {
         <div className={classes["social-media"]}>
           <h4 className={classes["social-media-title"]}>Login with </h4>
           <GoogleLogin
-            clientId="1059448371288-vol44jdsvkfc0d1b96puhukpd35fv0c3.apps.googleusercontent.com"
+            clientId="985453790796-3blkrf1glddf1gudrbg8cog8earsegn8.apps.googleusercontent.com"
             render={(renderProps) => (
               <button
                 onClick={renderProps.onClick}
@@ -209,13 +215,14 @@ const Login = ({ className }) => {
               </button>
             )}
             buttonText="Login"
-            //onSuccess={responseGoogle}
+            onSuccess={responseGoogle}
+            cookiePolicy={"single_host_origin"}
           />
           <FacebookLogin
-            appId="1424063898122804"
+            appId="588324053115993"
             autoLoad={false}
             fields="name,email,picture"
-            //callback={responseFacebook}
+            callback={responseFacebook}
             render={(renderProps) => (
               <button
                 onClick={renderProps.onClick}

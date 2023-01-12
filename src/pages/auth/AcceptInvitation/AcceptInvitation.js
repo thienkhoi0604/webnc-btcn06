@@ -5,7 +5,7 @@ import { URL_SERVER } from "../../../constants";
 import { message } from "antd";
 import { useQuery } from "@tanstack/react-query";
 
-const ActivationEmail = () => {
+const AccepInvitation = () => {
   const { activation_token } = useParams();
   const [messageApi, contextHolder] = message.useMessage();
   const [err, setErr] = useState("");
@@ -14,8 +14,8 @@ const ActivationEmail = () => {
     let result = "";
     if (activation_token) {
       try {
-        console.log("count");
-        const res = await axios.post(`${URL_SERVER}/user/activation`, {
+        console.log(activation_token);
+        const res = await axios.post(`${URL_SERVER}/group/addMember`, {
           activation_token,
         });
         setSuccess(res.data.msg);
@@ -51,4 +51,4 @@ const ActivationEmail = () => {
   return <div className="active_page">{contextHolder}</div>;
 };
 
-export default ActivationEmail;
+export default AccepInvitation;
